@@ -20,12 +20,17 @@ func add_item_to_cart(name string, price int) {
 }
 
 func calc_cart_total() {
+	calc_total()
+	update_shipping_icons()
+	update_tax_dom()
+}
+
+func calc_total() {
 	total := 0
 	for _, sku := range cart {
 		total += sku.price
 	}
 	cart_total = total
-	update_shipping_icons()
 }
 
 type buy_button struct {
@@ -56,6 +61,13 @@ func update_shipping_icons() {
 			hide_free_shipping_icon(button)
 		}
 	}
+}
+
+func set_tax_dom(tax float64) {
+}
+
+func update_tax_dom() {
+	set_tax_dom(float64(cart_total) * 0.10)
 }
 
 func main() {
